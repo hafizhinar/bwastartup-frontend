@@ -43,10 +43,30 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+    // https://axios.nuxtjs.org/
+    '@nuxtjs/auth-next',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  axios: {
+    baseURL : 'http://backer-backend.buildwithangga.id/',
+  },
+
+  auth: {
+    strategies: {
+      local: {
+        // token: {
+        //   required: false,
+        //   type: false
+        // },
+        endpoints: {
+          login: { url: '/api/v1/sessions', method: 'post', property:'data.token' },
+          logout: false,
+          user: { url: '/api/v1/users/fetch', method: 'get', property:'data' }
+        }
+      }
+    }
+  },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
